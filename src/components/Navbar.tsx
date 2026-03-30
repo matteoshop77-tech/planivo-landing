@@ -19,18 +19,11 @@ export default function Navbar({ t }: NavbarProps) {
           </div>
           <span className="font-semibold text-slate-900 text-lg tracking-tight">PLANIVO</span>
         </div>
-
         <div className="flex items-center gap-4">
-          
-            href="https://app.planivoapp.com/login"
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
-          >
+          <a href="https://app.planivoapp.com/login" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
             {t.nav.login}
           </a>
-          
-            href="https://app.planivoapp.com/register"
-            className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
+          <a href="https://app.planivoapp.com/register" className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
             {t.nav.cta}
           </a>
         </div>

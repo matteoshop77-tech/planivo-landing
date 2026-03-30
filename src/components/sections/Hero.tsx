@@ -12,41 +12,27 @@ export default function Hero({ t }: HeroProps) {
           <span className="w-2 h-2 rounded-full bg-blue-500 inline-block"></span>
           {t.hero.badge}
         </div>
-
-        <h1 className="text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+        <h1 className="text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight">
           {t.hero.title.split('\n').map((line, i) => (
             <span key={i}>
               {i === 0 ? line : <><br /><span className="text-blue-600">{line}</span></>}
             </span>
           ))}
         </h1>
-
         <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
           {t.hero.subtitle}
         </p>
-
         <div className="flex items-center justify-center gap-4 flex-wrap">
-          
-            href="https://app.planivoapp.com/register"
-            className="bg-blue-600 text-white font-semibold px-8 py-4 rounded-xl hover:bg-blue-700 transition-colors text-base"
-            style={{ boxShadow: '0 4px 14px 0 rgba(37,99,235,0.35)' }}
-          >
+          <a href="https://app.planivoapp.com/register" className="bg-blue-600 text-white font-semibold px-8 py-4 rounded-xl hover:bg-blue-700 transition-colors text-base" style={{ boxShadow: '0 4px 14px 0 rgba(37,99,235,0.35)' }}>
             {t.hero.cta_primary}
           </a>
-          
-            href="#how-it-works"
-            className="text-slate-700 font-medium px-8 py-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-colors text-base bg-white"
-          >
+          <a href="#how-it-works" className="text-slate-700 font-medium px-8 py-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-colors text-base bg-white">
             {t.hero.cta_secondary}
           </a>
         </div>
       </div>
-
       <div className="max-w-5xl mx-auto mt-16">
-        <div
-          className="rounded-2xl border border-slate-200 overflow-hidden"
-          style={{ boxShadow: '0 20px 60px 0 rgba(0,0,0,0.12)' }}
-        >
+        <div className="rounded-2xl border border-slate-200 overflow-hidden" style={{ boxShadow: '0 20px 60px 0 rgba(0,0,0,0.12)' }}>
           <div className="bg-slate-100 px-4 py-3 flex items-center gap-2 border-b border-slate-200">
             <div className="w-3 h-3 rounded-full bg-red-400"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
