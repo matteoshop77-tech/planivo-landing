@@ -1,4 +1,6 @@
-import type { Translations } from '../../i18n/en'
+import { writeFileSync } from 'fs'
+
+const content = `import type { Translations } from '../../i18n/en'
 import AppMockup from '../AppMockup'
 
 interface HeroProps {
@@ -14,7 +16,7 @@ export default function Hero({ t }: HeroProps) {
           {t.hero.badge}
         </div>
         <h1 className="font-bold text-slate-900 leading-tight tracking-tight mb-6" style={{ fontSize: 'clamp(42px, 6vw, 72px)' }}>
-          {t.hero.title.split('\n').map((line, i) => (
+          {t.hero.title.split('\\n').map((line, i) => (
             <span key={i}>
               {i === 0 ? line : (
                 <>
@@ -54,4 +56,7 @@ export default function Hero({ t }: HeroProps) {
       </div>
     </section>
   )
-}
+}`
+
+writeFileSync('src/components/sections/Hero.tsx', content, 'utf8')
+console.log('OK')

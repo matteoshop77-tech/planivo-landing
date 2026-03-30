@@ -28,12 +28,12 @@ export default function App() {
         <FeatureShowcase
           screen="shifts"
           subtitle="Shift planning"
-          title="Plan your week in minutes, not hours."
-          description="Drag, assign and publish shifts for your entire team. Every employee gets an instant notification — no more WhatsApp chaos."
+          title="Publish shifts in seconds. Your team gets notified instantly."
+          description="No more photos of paper schedules sent on WhatsApp. Create the week's shifts, publish them, and every employee receives a notification on their phone. They know when they work. You know they know."
           points={[
             'Weekly view with color-coded staff',
-            'Instant push notifications on shift changes',
-            'Edit or delete shifts with one click',
+            'Instant push notification on every shift change',
+            'Employees can see their schedule anytime, anywhere',
           ]}
           background="#ffffff"
         />
@@ -41,12 +41,12 @@ export default function App() {
         <FeatureShowcase
           screen="chat"
           subtitle="Team communication"
-          title="Your whole team, always connected."
-          description="Group chats by department, direct messages, read receipts. Everything in one place — not scattered across a dozen apps."
+          title="Reach anyone on your team in one click."
+          description="A task for Mario, an announcement for the kitchen, a document for the new hire — everything lands directly on their phone. No more 'I didn't see it'. Read receipts show you exactly who has and hasn't read your message."
           points={[
-            'Department group chats',
-            'Direct messages between staff',
-            'Read receipts so nothing gets missed',
+            'Department group chats with read receipts',
+            'Direct messages between any team members',
+            'Announcements with confirmed read tracking',
           ]}
           reverse={true}
           background="#eef0f4"
@@ -55,12 +55,12 @@ export default function App() {
         <FeatureShowcase
           screen="team"
           subtitle="People management"
-          title="Your entire team, under control."
-          description="See every employee at a glance — roles, departments, contracts, hourly rates. Invite new members in seconds."
+          title="Your whole team, always under control."
+          description="See every employee at a glance — their role, department, contract, hourly rate. Approve new members, manage permissions, send documents directly to their profile. Everything in one place, nothing lost."
           points={[
             'Full staff directory with roles and departments',
+            'Send contracts and documents to each employee',
             'Granular permissions across 11 modules',
-            'Invite new members via email link',
           ]}
           background="#ffffff"
         />
