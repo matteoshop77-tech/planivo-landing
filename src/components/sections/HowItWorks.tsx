@@ -13,8 +13,8 @@ export default function HowItWorks({ t }: HowItWorksProps) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-8 relative">
-          <div className="absolute top-10 left-1/3 right-1/3 h-0.5 bg-blue-100 hidden md:block"></div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 relative">
+          <div className="hidden sm:block absolute top-10 left-[calc(33%+40px)] right-[calc(33%+40px)] h-0.5 bg-blue-100"></div>
 
           {t.how_it_works.steps.map((step, i) => (
             <div key={i} className="text-center relative">

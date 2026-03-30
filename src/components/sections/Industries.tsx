@@ -19,7 +19,7 @@ export default function Industries({ t }: IndustriesProps) {
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {t.industries.items.map((item, i) => (
             <div
               key={i}

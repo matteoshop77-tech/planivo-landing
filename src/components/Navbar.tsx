@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Translations } from '../i18n/en'
 
 interface NavbarProps {
@@ -5,6 +6,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ t }: NavbarProps) {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200" style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.08)' }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -19,7 +22,8 @@ export default function Navbar({ t }: NavbarProps) {
           </div>
           <span className="font-semibold text-slate-900 text-lg tracking-tight">PLANIVO</span>
         </div>
-        <div className="flex items-center gap-4">
+
+        <div className="hidden sm:flex items-center gap-4">
           <a href="https://app.planivoapp.com/login" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
             {t.nav.login}
           </a>
@@ -27,7 +31,36 @@ export default function Navbar({ t }: NavbarProps) {
             {t.nav.cta}
           </a>
         </div>
+
+        <button
+          className="sm:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`block w-5 h-0.5 bg-slate-700 transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+          <span className={`block w-5 h-0.5 bg-slate-700 transition-all ${menuOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`block w-5 h-0.5 bg-slate-700 transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="sm:hidden border-t border-slate-100 bg-white px-6 py-4 flex flex-col gap-3">
+          <a
+            href="https://app.planivoapp.com/login"
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors py-2"
+            onClick={() => setMenuOpen(false)}
+          >
+            {t.nav.login}
+          </a>
+          <a
+            href="https://app.planivoapp.com/register"
+            className="text-sm font-medium bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors text-center"
+            onClick={() => setMenuOpen(false)}
+          >
+            {t.nav.cta}
+          </a>
+        </div>
+      )}
     </nav>
   )
 }

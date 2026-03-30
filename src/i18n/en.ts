@@ -110,7 +110,7 @@ export const en = {
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
     contact: 'Contact',
-    rights: '© 2025 PLANIVO. All rights reserved.',
+    rights: '© 2026 PLANIVO. All rights reserved.',
   },
 }
 

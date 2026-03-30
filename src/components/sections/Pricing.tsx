@@ -30,7 +30,8 @@ export default function Pricing({ t }: PricingProps) {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {t.pricing.plans.map((plan, i) => (
             <div key={i} className={`rounded-2xl p-6 flex flex-col ${plan.popular ? 'bg-blue-600 text-white' : 'bg-white border border-slate-100'}`} style={{ boxShadow: plan.popular ? '0 8px 32px 0 rgba(37,99,235,0.3)' : '0 2px 8px 0 rgba(0,0,0,0.05)' }}>
               <div className="mb-6">

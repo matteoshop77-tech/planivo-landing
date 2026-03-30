@@ -25,7 +25,7 @@ export default function Features({ t }: FeaturesProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {t.features.items.map((feature, i) => (
             <div
               key={i}
