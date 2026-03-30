@@ -1,3 +1,4 @@
+import PainPoints from './components/sections/PainPoints'
 import { useState } from 'react'
 import { getTranslations } from './i18n'
 import type { Language } from './i18n'
@@ -23,6 +24,7 @@ export default function App() {
       <main>
         <Hero t={t} />
         <SocialProof t={t} />
+        <PainPoints />
         <HowItWorks t={t} />
 
         <FeatureShowcase
