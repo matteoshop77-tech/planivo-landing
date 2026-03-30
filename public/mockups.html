@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PLANIVO App Mockups</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#eef0f4;display:flex;flex-direction:column;align-items:center;padding:40px 20px;gap:24px;}
+
+.selector{display:flex;gap:8px;background:white;padding:6px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.selector button{padding:8px 18px;border:none;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#64748b;}
+.selector button.active{background:#2563eb;color:white;box-shadow:0 2px 8px rgba(37,99,235,0.3);}
+
+.mockup-wrapper{display:none;flex-direction:column;align-items:center;gap:8px;}
+.mockup-wrapper.active{display:flex;}
+
+/* BROWSER */
+.browser{width:900px;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.18),0 8px 24px rgba(0,0,0,0.10);}
+.browser-bar{background:#f1f5f9;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e2e8f0;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dot.r{background:#fc5c5c;}.dot.y{background:#fdbd41;}.dot.g{background:#34c749;}
+.url-bar{flex:1;margin:0 16px;background:white;border-radius:6px;padding:5px 12px;font-size:12px;color:#94a3b8;border:1px solid #e2e8f0;}
+.browser-body{background:#eef0f4;display:flex;height:600px;}
+
+/* SIDEBAR — fedele all'app reale */
+.sidebar{width:224px;background:white;border-right:1px solid #e9ecf2;display:flex;flex-direction:column;flex-shrink:0;height:100%;}
+.sb-logo{padding:20px 20px 16px;border-bottom:1px solid #e9ecf2;display:flex;align-items:center;gap:10px;}
+.sb-logo-icon{width:32px;height:32px;background:#2563eb;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(37,99,235,0.3);}
+.sb-logo-icon svg{width:16px;height:16px;}
+.sb-org{font-size:15px;font-weight:700;color:#0f172a;line-height:1.1;}
+.sb-role{font-size:11px;color:#64748b;margin-top:1px;}
+
+.sb-checkin{margin:8px 12px 4px;}
+.sb-checkin button{width:100%;display:flex;align-items:center;gap:10px;padding:9px 12px;background:#2563eb;color:white;border:none;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 2px 10px rgba(37,99,235,0.35);}
+
+.sb-nav{flex:1;padding:8px 12px;overflow-y:auto;display:flex;flex-direction:column;gap:0;}
+.sb-section{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.8px;padding:8px 12px 4px;}
+.sb-link{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:500;color:#64748b;cursor:pointer;transition:all .15s;margin-bottom:1px;}
+.sb-link:hover{background:#f8fafc;color:#0f172a;}
+.sb-link.active{background:#eff6ff;color:#2563eb;font-weight:600;border:1px solid #dbeafe;box-shadow:0 1px 3px rgba(37,99,235,0.08);}
+.sb-link svg{width:16px;height:16px;flex-shrink:0;}
+.sb-link.active svg{color:#2563eb;}
+.sb-badge{margin-left:auto;background:#2563eb;color:white;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 5px;}
+
+.sb-footer{padding:10px 16px;border-top:1px solid #e9ecf2;background:#f8fafc;display:flex;align-items:center;gap:10px;}
+.sb-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;}
+.sb-fname{font-size:12px;font-weight:600;color:#0f172a;}
+.sb-frole{font-size:10px;color:#64748b;}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:white;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e9ecf2;flex-shrink:0;}
+.topbar-title{font-size:18px;font-weight:700;color:#0f172a;}
+.content{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:14px;}
+
+/* HOME/DASHBOARD */
+.greeting-name{font-size:20px;font-weight:700;color:#0f172a;}
+.greeting-date{font-size:13px;color:#64748b;margin-top:2px;}
+.section-label{font-size:11px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;}
+.card{background:white;border-radius:12px;border:1px solid #e9ecf2;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.card-pad{padding:14px 16px;}
+
+.announce-title{font-size:14px;font-weight:700;color:#0f172a;}
+.announce-body{font-size:12px;color:#475569;line-height:1.6;margin-top:4px;}
+.announce-footer{padding:10px 16px;background:#f8fafc;border-top:1px solid #f1f5f9;}
+.confirm-btn{width:100%;padding:9px;background:#2563eb;color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;}
+
+.shift-badge{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:700;color:#1d4ed8;}
+.task-row{padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;}
+.task-row:last-child{border-bottom:none;}
+.task-category{font-size:10px;color:#94a3b8;margin-bottom:2px;}
+.task-name{font-size:13px;font-weight:600;color:#0f172a;}
+.task-person{display:flex;align-items:center;gap:5px;margin-top:4px;}
+.task-avatar{width:18px;height:18px;border-radius:50%;font-size:8px;font-weight:700;color:white;display:flex;align-items:center;justify-content:center;}
+.task-person-name{font-size:11px;color:#64748b;}
+.task-status{font-size:11px;color:#64748b;background:#f1f5f9;padding:3px 8px;border-radius:6px;font-weight:500;}
+.task-left-bar{width:3px;border-radius:2px;align-self:stretch;}
+
+/* SHIFTS */
+.week-nav{background:white;border:2px solid #e9ecf2;border-radius:10px;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;}
+.week-nav span{font-size:13px;font-weight:700;color:#0f172a;}
+.wn-btn{background:none;border:none;color:#64748b;cursor:pointer;font-size:20px;line-height:1;padding:0 4px;}
+.day-card{background:white;border:2px solid #e9ecf2;border-radius:12px;overflow:hidden;}
+.day-card.today{border-color:#2563eb;}
+.day-header{padding:8px 14px 6px;display:flex;align-items:center;justify-content:space-between;}
+.day-name{font-size:13px;font-weight:700;color:#0f172a;}
+.day-name.today-c{color:#2563eb;}
+.day-date{font-size:11px;color:#94a3b8;margin-left:6px;}
+.day-date.today-c{color:#2563eb;}
+.add-btn{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:20px;line-height:1;}
+.day-card.today .add-btn{color:#2563eb;}
+.day-shifts{padding:4px 14px 10px;display:flex;flex-direction:column;gap:5px;}
+.shift-row{display:flex;align-items:center;gap:8px;}
+.sname{width:100px;font-size:11px;font-weight:600;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.stl{flex:1;height:26px;background:#f1f5f9;border-radius:6px;position:relative;overflow:hidden;}
+.sbar{position:absolute;top:0;height:100%;border-radius:5px;display:flex;align-items:center;padding:0 7px;border:1px solid;font-size:9px;font-weight:700;white-space:nowrap;}
+.sact{display:flex;gap:4px;}
+.sact button{background:none;border:none;cursor:pointer;font-size:11px;opacity:.6;padding:2px;}
+.no-shifts{padding:4px 14px 10px;font-size:11px;color:#94a3b8;font-style:italic;}
+
+/* TEAM */
+.search-row{background:white;border:2px solid #e9ecf2;border-radius:10px;padding:8px 14px;display:flex;align-items:center;gap:8px;color:#94a3b8;font-size:13px;}
+.team-card{background:white;border:2px solid #e9ecf2;border-radius:12px;overflow:hidden;}
+.team-card.expanded{border-color:#2563eb;}
+.tc-head{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.tc-head:hover{background:#f8fafc;}
+.m-ava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;}
+.m-name{font-size:13px;font-weight:700;color:#0f172a;}
+.m-dept{font-size:11px;color:#64748b;margin-top:1px;}
+.mbadges{display:flex;align-items:center;gap:6px;}
+.mbadge{font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px;}
+.mbadge.active{background:#dcfce7;color:#166534;}
+.mbadge.dept{background:#eff6ff;color:#1d4ed8;}
+.mbadge.role{background:#f3f4f6;color:#374151;}
+.tc-body{padding:12px 14px;background:#f8fafc;border-top:1px solid #f1f5f9;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.dr{font-size:11px;}
+.dr span:first-child{color:#94a3b8;display:block;margin-bottom:1px;}
+.dr span:last-child{color:#0f172a;font-weight:600;}
+
+/* CHAT */
+.chat-wrap{display:flex;height:560px;}
+.chat-list{width:260px;border-right:1px solid #e9ecf2;background:white;display:flex;flex-direction:column;flex-shrink:0;}
+.cl-title{padding:16px 16px 8px;font-size:16px;font-weight:700;color:#0f172a;}
+.cl-search{padding:6px 12px 10px;}
+.cl-search input{width:100%;background:#f1f5f9;border:none;border-radius:20px;padding:7px 14px;font-size:12px;color:#0f172a;outline:none;font-family:'Plus Jakarta Sans',sans-serif;}
+.cl-section{font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.7px;padding:6px 16px 2px;}
+.conv{padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border-bottom:1px solid #f8fafc;}
+.conv:hover,.conv.active{background:#f0f7ff;}
+.conv-ava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;flex-shrink:0;}
+.conv-ava.group{border-radius:10px;}
+.conv-txt{flex:1;min-width:0;}
+.conv-name{font-size:13px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.conv-last{font-size:11px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+.conv-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+.conv-time{font-size:10px;color:#94a3b8;}
+.conv-unread{background:#2563eb;color:white;font-size:9px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+
+.chat-main{flex:1;display:flex;flex-direction:column;background:#f8fafc;}
+.chat-hdr{background:white;padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e9ecf2;flex-shrink:0;}
+.chat-hdr-name{font-size:14px;font-weight:700;color:#0f172a;}
+.chat-hdr-sub{font-size:11px;color:#16a34a;}
+.msgs{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;}
+.msg-row{display:flex;gap:8px;align-items:flex-end;}
+.msg-row.own{flex-direction:row-reverse;}
+.msg-ava{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;}
+.bubble{max-width:260px;padding:9px 13px;border-radius:14px;font-size:12px;line-height:1.5;}
+.bubble.other{background:white;color:#0f172a;border:1px solid #e9ecf2;border-bottom-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.bubble.own{background:#2563eb;color:white;border-bottom-right-radius:4px;}
+.msg-time{font-size:10px;margin-top:3px;}
+.msg-time.other{color:#94a3b8;}
+.msg-time.own{color:rgba(255,255,255,0.65);text-align:right;}
+.chat-input{background:white;padding:10px 14px;border-top:1px solid #e9ecf2;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.chat-input input{flex:1;background:#f1f5f9;border:none;border-radius:20px;padding:8px 16px;font-size:12px;outline:none;font-family:'Plus Jakarta Sans',sans-serif;}
+.send-btn{width:34px;height:34px;background:#2563eb;border:none;border-radius:50%;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+
+.page-label{font-size:12px;font-weight:600;color:#64748b;text-align:center;letter-spacing:.3px;}
+
+/* SVG icons inline */
+.ico{display:inline-block;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<div class="selector">
+  <button class="active" onclick="show(0)">📅 Shifts</button>
+  <button onclick="show(1)">🏠 Dashboard</button>
+  <button onclick="show(2)">👥 Team</button>
+  <button onclick="show(3)">💬 Chat</button>
+</div>
+
+<!-- ═══════════════════════════ SIDEBAR TEMPLATE (reusable via JS) ═══════════════════════════ -->
+<template id="sidebar-tpl">
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white"/>
+          <rect x="11" y="2" width="7" height="7" rx="1.5" fill="white"/>
+          <rect x="2" y="11" width="7" height="7" rx="1.5" fill="white"/>
+          <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity="0.4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sb-org">Grand Hotel Milano</div>
+        <div class="sb-role">Admin</div>
+      </div>
+    </div>
+    <div class="sb-checkin">
+      <button>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Check In / Check Out
+      </button>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">Main</div>
+      <div class="sb-link" data-key="home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </div>
+      <div class="sb-link" data-key="shifts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Shifts
+      </div>
+      <div class="sb-link" data-key="tasks">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Tasks
+        <span class="sb-badge" style="margin-left:auto;">5</span>
+      </div>
+      <div class="sb-link" data-key="chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Chat
+        <span class="sb-badge" style="margin-left:auto;" data-chat-badge>3</span>
+      </div>
+      <div class="sb-section">Operations</div>
+      <div class="sb-link" data-key="checklist">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        Checklist
+      </div>
+      <div class="sb-link" data-key="inventory">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Inventory
+      </div>
+      <div class="sb-link" data-key="announcements">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        Announcements
+      </div>
+      <div class="sb-link" data-key="ideas">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><path d="M12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6 6 6 0 0 1-6-6 6 6 0 0 1 6-6z"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+        Ideas &amp; Feedback
+      </div>
+      <div class="sb-section">Culture</div>
+      <div class="sb-link" data-key="recognition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Recognition
+      </div>
+      <div class="sb-link" data-key="birthdays">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Birthdays
+      </div>
+      <div class="sb-link" data-key="surveys">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Surveys
+      </div>
+      <div class="sb-section">People</div>
+      <div class="sb-link" data-key="team">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        People
+      </div>
+    </div>
+    <div class="sb-footer">
+      <div class="sb-avatar" style="background:#2563eb;">MM</div>
+      <div>
+        <div class="sb-fname">Marco Bianchi</div>
+        <div class="sb-frole">Admin</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- ═══════════ MOCKUP 1: SHIFTS ═══════════ -->
+<div class="mockup-wrapper active" id="m0">
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="url-bar">app.planivoapp.com/schedule</div>
+  </div>
+  <div class="browser-body">
+    <div id="sb0"></div>
+    <div class="main">
+      <div class="topbar">
+        <span class="topbar-title">Shifts</span>
+        <button style="background:#2563eb;color:white;border:none;border-radius:8px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">+ New shift</button>
+      </div>
+      <div class="content">
+        <div class="week-nav">
+          <button class="wn-btn">‹</button>
+          <span>31 Mar – 6 Apr 2026</span>
+          <button class="wn-btn">›</button>
+        </div>
+        <!-- Monday TODAY -->
+        <div class="day-card today">
+          <div class="day-header">
+            <div><span class="day-name today-c">Monday</span><span class="day-date today-c"> 31/03/2026</span></div>
+            <button class="add-btn">+</button>
+          </div>
+          <div class="day-shifts">
+            <div class="shift-row">
+              <span class="sname" style="color:#2C5F7A;">Sofia Esposito</span>
+              <div class="stl"><div class="sbar" style="left:0;width:50%;background:#D3E8F5;border-color:#74B4D4;color:#2C5F7A;">08:00–14:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+            <div class="shift-row">
+              <span class="sname" style="color:#8B5E3C;">Luca Moretti</span>
+              <div class="stl"><div class="sbar" style="left:41.7%;width:50%;background:#F5E6D3;border-color:#D4A574;color:#8B5E3C;">13:00–19:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+            <div class="shift-row">
+              <span class="sname" style="color:#2C7A4A;">Ahmed Karim</span>
+              <div class="stl"><div class="sbar" style="left:25%;width:66.7%;background:#D3F5E0;border-color:#74D4A0;color:#2C7A4A;">11:00–19:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+            <div class="shift-row">
+              <span class="sname" style="color:#7A2C5F;">Elena Russo</span>
+              <div class="stl"><div class="sbar" style="left:66.7%;width:33.3%;background:#F5D3E8;border-color:#D474B4;color:#7A2C5F;">16:00–20:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+          </div>
+        </div>
+        <!-- Tuesday -->
+        <div class="day-card">
+          <div class="day-header">
+            <div><span class="day-name">Tuesday</span><span class="day-date"> 01/04/2026</span></div>
+            <button class="add-btn" style="color:#94a3b8;">+</button>
+          </div>
+          <div class="day-shifts">
+            <div class="shift-row">
+              <span class="sname" style="color:#7A2C5F;">Elena Russo</span>
+              <div class="stl"><div class="sbar" style="left:0;width:75%;background:#F5D3E8;border-color:#D474B4;color:#7A2C5F;">08:00–17:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+            <div class="shift-row">
+              <span class="sname" style="color:#2C5F7A;">Sofia Esposito</span>
+              <div class="stl"><div class="sbar" style="left:50%;width:50%;background:#D3E8F5;border-color:#74B4D4;color:#2C5F7A;">14:00–20:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+          </div>
+        </div>
+        <!-- Wednesday -->
+        <div class="day-card">
+          <div class="day-header">
+            <div><span class="day-name">Wednesday</span><span class="day-date"> 02/04/2026</span></div>
+            <button class="add-btn" style="color:#94a3b8;">+</button>
+          </div>
+          <div class="day-shifts">
+            <div class="shift-row">
+              <span class="sname" style="color:#8B5E3C;">Luca Moretti</span>
+              <div class="stl"><div class="sbar" style="left:0;width:58.3%;background:#F5E6D3;border-color:#D4A574;color:#8B5E3C;">08:00–15:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+            <div class="shift-row">
+              <span class="sname" style="color:#2C7A4A;">Ahmed Karim</span>
+              <div class="stl"><div class="sbar" style="left:33.3%;width:50%;background:#D3F5E0;border-color:#74D4A0;color:#2C7A4A;">12:00–18:00</div></div>
+              <div class="sact"><button>✏️</button><button>🗑</button></div>
+            </div>
+          </div>
+        </div>
+        <!-- Thursday -->
+        <div class="day-card">
+          <div class="day-header">
+            <div><span class="day-name">Thursday</span><span class="day-date"> 03/04/2026</span></div>
+            <button class="add-btn" style="color:#94a3b8;">+</button>
+          </div>
+          <div class="no-shifts">No shifts scheduled</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-label">Shifts — Weekly view with color-coded staff</div>
+</div>
+
+<!-- ═══════════ MOCKUP 2: DASHBOARD ═══════════ -->
+<div class="mockup-wrapper" id="m1">
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="url-bar">app.planivoapp.com/home</div>
+  </div>
+  <div class="browser-body">
+    <div id="sb1"></div>
+    <div class="main">
+      <div class="topbar">
+        <span class="topbar-title">Good afternoon, Marco 👋</span>
+        <span style="font-size:12px;color:#94a3b8;">30/03/2026</span>
+      </div>
+      <div class="content">
+        <!-- Announcements -->
+        <div>
+          <div class="section-label">Unread Announcements</div>
+          <div class="card">
+            <div class="card-pad">
+              <div class="announce-title">Easter closing</div>
+              <div class="announce-body">The hotel will be closed on Easter Sunday. All staff scheduled for 20 April should contact their manager for rescheduling.</div>
+            </div>
+            <div class="announce-footer">
+              <button class="confirm-btn">I have read and confirm ✅</button>
+            </div>
+          </div>
+        </div>
+        <!-- Today's shift -->
+        <div>
+          <div class="card card-pad">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size:13px;font-weight:700;color:#0f172a;">Today's Shift</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="shift-badge">🕘 09:00 → 17:00</span>
+              <span style="font-size:12px;color:#16a34a;font-weight:600;">● Active now</span>
+            </div>
+            <div style="margin-top:6px;font-size:12px;color:#64748b;">Front Desk · Grand Hotel Milano</div>
+          </div>
+        </div>
+        <!-- Tasks today -->
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:13px;font-weight:700;color:#0f172a;">My Tasks Today</span>
+            <span style="font-size:12px;color:#2563eb;font-weight:600;">View all →</span>
+          </div>
+          <div class="card">
+            <div class="task-row" style="border-left:3px solid #ef4444;">
+              <div>
+                <div class="task-category">🧹 Housekeeping</div>
+                <div class="task-name">Deep clean — Rooms 301–310</div>
+                <div class="task-person"><div class="task-avatar" style="background:#2563eb;">AK</div><span class="task-person-name">Ahmed Karim</span></div>
+              </div>
+              <span class="task-status">To Do</span>
+            </div>
+            <div class="task-row" style="border-left:3px solid #f59e0b;">
+              <div>
+                <div class="task-category">📦 Orders</div>
+                <div class="task-name">Check linen delivery</div>
+                <div class="task-person"><div class="task-avatar" style="background:#9333ea;">ER</div><span class="task-person-name">Elena Russo</span></div>
+              </div>
+              <span class="task-status">To Do</span>
+            </div>
+            <div class="task-row" style="border-left:3px solid #94a3b8;">
+              <div>
+                <div class="task-category">🏨 Front Desk</div>
+                <div class="task-name">Prepare welcome packs for VIP guests</div>
+                <div class="task-person"><div class="task-avatar" style="background:#2563eb;">SE</div><span class="task-person-name">Sofia Esposito</span></div>
+              </div>
+              <span class="task-status">To Do</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-label">Dashboard — Announcements, today's shift and tasks</div>
+</div>
+
+<!-- ═══════════ MOCKUP 3: TEAM ═══════════ -->
+<div class="mockup-wrapper" id="m2">
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="url-bar">app.planivoapp.com/team</div>
+  </div>
+  <div class="browser-body">
+    <div id="sb2"></div>
+    <div class="main">
+      <div class="topbar">
+        <span class="topbar-title">People</span>
+        <button style="background:#2563eb;color:white;border:none;border-radius:8px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">+ Invite member</button>
+      </div>
+      <div class="content">
+        <div class="search-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search team members...
+        </div>
+        <!-- Member 1 expanded -->
+        <div class="team-card expanded">
+          <div class="tc-head">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="m-ava" style="background:#2563eb;">SE</div>
+              <div><div class="m-name">Sofia Esposito</div><div class="m-dept">Front Desk · Grand Hotel Milano</div></div>
+            </div>
+            <div class="mbadges">
+              <span class="mbadge active">● Active</span>
+              <span class="mbadge dept">Front Desk</span>
+              <span class="mbadge role">Staff</span>
+              <span style="color:#94a3b8;">▲</span>
+            </div>
+          </div>
+          <div class="tc-body">
+            <div class="dr"><span>Email</span><span>s.esposito@hotel.it</span></div>
+            <div class="dr"><span>Phone</span><span>+39 333 452 1876</span></div>
+            <div class="dr"><span>Joined</span><span>12 Jan 2025</span></div>
+            <div class="dr"><span>Hourly rate</span><span>€14.50 / hr</span></div>
+          </div>
+        </div>
+        <!-- Member 2 -->
+        <div class="team-card">
+          <div class="tc-head">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="m-ava" style="background:#d97706;">LM</div>
+              <div><div class="m-name">Luca Moretti</div><div class="m-dept">Kitchen · Grand Hotel Milano</div></div>
+            </div>
+            <div class="mbadges">
+              <span class="mbadge active">● Active</span>
+              <span class="mbadge dept" style="background:#fef3c7;color:#92400e;">Kitchen</span>
+              <span class="mbadge role">Staff</span>
+              <span style="color:#94a3b8;">▼</span>
+            </div>
+          </div>
+        </div>
+        <!-- Member 3 -->
+        <div class="team-card">
+          <div class="tc-head">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="m-ava" style="background:#16a34a;">AK</div>
+              <div><div class="m-name">Ahmed Karim</div><div class="m-dept">Housekeeping · Grand Hotel Milano</div></div>
+            </div>
+            <div class="mbadges">
+              <span class="mbadge active">● Active</span>
+              <span class="mbadge dept" style="background:#dcfce7;color:#166534;">Housekeeping</span>
+              <span class="mbadge role">Manager</span>
+              <span style="color:#94a3b8;">▼</span>
+            </div>
+          </div>
+        </div>
+        <!-- Member 4 -->
+        <div class="team-card">
+          <div class="tc-head">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="m-ava" style="background:#9333ea;">ER</div>
+              <div><div class="m-name">Elena Russo</div><div class="m-dept">Front Desk · Grand Hotel Milano</div></div>
+            </div>
+            <div class="mbadges">
+              <span class="mbadge active">● Active</span>
+              <span class="mbadge dept">Front Desk</span>
+              <span class="mbadge role">Staff</span>
+              <span style="color:#94a3b8;">▼</span>
+            </div>
+          </div>
+        </div>
+        <!-- Member 5 -->
+        <div class="team-card">
+          <div class="tc-head">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="m-ava" style="background:#0891b2;">FM</div>
+              <div><div class="m-name">Ferenc Matusek</div><div class="m-dept">Bar · Grand Hotel Milano</div></div>
+            </div>
+            <div class="mbadges">
+              <span class="mbadge active">● Active</span>
+              <span class="mbadge dept" style="background:#e0f2fe;color:#0369a1;">Bar</span>
+              <span class="mbadge role">Staff</span>
+              <span style="color:#94a3b8;">▼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-label">Team — Staff directory with roles and departments</div>
+</div>
+
+<!-- ═══════════ MOCKUP 4: CHAT ═══════════ -->
+<div class="mockup-wrapper" id="m3">
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <div class="url-bar">app.planivoapp.com/chat</div>
+  </div>
+  <div class="browser-body">
+    <div id="sb3"></div>
+    <div class="main">
+      <div class="topbar"><span class="topbar-title">Chat</span></div>
+      <div class="chat-wrap">
+        <div class="chat-list">
+          <div class="cl-title">Chat</div>
+          <div class="cl-search"><input placeholder="Cerca..."/></div>
+          <div class="cl-section">Gruppi</div>
+          <div class="conv active">
+            <div class="conv-ava group" style="background:#2563eb;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="conv-txt">
+              <div class="conv-name">Front Desk</div>
+              <div class="conv-last">Sofia: Can someone cover tomorrow?</div>
+            </div>
+            <div class="conv-meta"><span class="conv-time">09:42</span><span class="conv-unread">2</span></div>
+          </div>
+          <div class="conv">
+            <div class="conv-ava group" style="background:#16a34a;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="conv-txt">
+              <div class="conv-name">Kitchen</div>
+              <div class="conv-last">Nessun messaggio</div>
+            </div>
+            <div class="conv-meta"><span class="conv-time"></span></div>
+          </div>
+          <div class="conv">
+            <div class="conv-ava group" style="background:#9333ea;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="conv-txt">
+              <div class="conv-name">Shop</div>
+              <div class="conv-last">Nessun messaggio</div>
+            </div>
+            <div class="conv-meta"><span class="conv-time"></span></div>
+          </div>
+          <div class="cl-section">Messaggi Diretti</div>
+          <div class="conv">
+            <div class="conv-ava" style="background:#0891b2;">FM</div>
+            <div class="conv-txt">
+              <div class="conv-name">Ferenc Matusek</div>
+              <div class="conv-last">hi</div>
+            </div>
+            <div class="conv-meta"><span class="conv-time">29/03</span></div>
+          </div>
+          <div class="conv">
+            <div class="conv-ava" style="background:#e11d48;">PB</div>
+            <div class="conv-txt">
+              <div class="conv-name">Paolo Bianchi</div>
+              <div class="conv-last">ciao</div>
+            </div>
+            <div class="conv-meta"><span class="conv-time">26/03</span></div>
+          </div>
+        </div>
+        <div class="chat-main">
+          <div class="chat-hdr">
+            <div class="conv-ava group" style="background:#2563eb;width:36px;height:36px;border-radius:10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div><div class="chat-hdr-name">Front Desk</div><div class="chat-hdr-sub">● 4 membri online</div></div>
+          </div>
+          <div class="msgs">
+            <div class="msg-row">
+              <div class="msg-ava" style="background:#2563eb;">SE</div>
+              <div>
+                <div class="bubble other">Ciao a tutti! Qualcuno può coprire il mio turno domani mattina alle 8? Ho un appuntamento medico 🙏</div>
+                <div class="msg-time other">Sofia · 09:38</div>
+              </div>
+            </div>
+            <div class="msg-row">
+              <div class="msg-ava" style="background:#9333ea;">ER</div>
+              <div>
+                <div class="bubble other">Ci penso io! Tanto finisco alle 18 oggi 👍</div>
+                <div class="msg-time other">Elena · 09:40</div>
+              </div>
+            </div>
+            <div class="msg-row">
+              <div class="msg-ava" style="background:#16a34a;">AK</div>
+              <div>
+                <div class="bubble other">Aggiorno il turno adesso dal pannello</div>
+                <div class="msg-time other">Ahmed · 09:41</div>
+              </div>
+            </div>
+            <div class="msg-row own">
+              <div class="msg-ava" style="background:#2563eb;">MM</div>
+              <div>
+                <div class="bubble own">Grazie Elena! Sofia ti mando la conferma del cambio turno direttamente sull'app ✓</div>
+                <div class="msg-time own">Tu · 09:42 ✓✓</div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input placeholder="Scrivi un messaggio..."/>
+            <button class="send-btn">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-label">Chat — Gruppi dipartimento e messaggi diretti</div>
+</div>
+
+<script>
+// Inject sidebar clone into each mockup
+['sb0','sb1','sb2','sb3'].forEach(function(id, i) {
+  var tpl = document.getElementById('sidebar-tpl');
+  var clone = tpl.content.cloneNode(true);
+  // Set active nav item per mockup
+  var keys = ['shifts','home','team','chat'];
+  var activeKey = keys[i];
+  clone.querySelectorAll('.sb-link').forEach(function(el){
+    if(el.dataset.key === activeKey) el.classList.add('active');
+  });
+  document.getElementById(id).appendChild(clone);
+});
+
+function show(i){
+  document.querySelectorAll('.mockup-wrapper').forEach(function(m,j){ m.classList.toggle('active', j===i); });
+  document.querySelectorAll('.selector button').forEach(function(b,j){ b.classList.toggle('active', j===i); });
+}
+</script>
+</body>
+</html>
